@@ -5,7 +5,7 @@ const User = db.user;
 const Role = db.role;
 
 verifyToken = (req, res, next) => {
-  let token = req.headers["x-access-token"];
+  let token = req.headers["x-access-token"] || req.headers["authorization"];
 
   if (!token) {
     return res.status(403).send({ message: "No token provided!" });
@@ -16,7 +16,7 @@ verifyToken = (req, res, next) => {
             (err, decoded) => {
               if (err) {
                 return res.status(401).send({
-                  message: "Unauthorized!",
+                  message: "Unauthorized!" + err,
                 });
               }
               req.userId = decoded.id;

@@ -1,3 +1,3 @@
 module.exports = {
-  secret: "mathanlakshmanan-secret-key"
+  secret: "mathanlakshmanan"
 };

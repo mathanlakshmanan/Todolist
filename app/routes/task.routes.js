@@ -10,11 +10,11 @@ module.exports = function(app) {
     next();
   });
 
-  app.get("/api/allusers", controller.allusers);
-  app.get("/api/task/all", controller.alltask);
-  app.get("/api/task/single/:id", controller.singletask);
-  app.post("/api/task/add", controller.addtask);
-  app.put("/api/task/update/:id", controller.updatetask);
-  app.delete("/api/task/delete/:id", controller.deletetask);
+  app.get("/api/allusers", [authJwt.verifyToken], controller.allusers);
+  app.get("/api/task/all", [authJwt.verifyToken], controller.alltask);
+  app.get("/api/task/single/:id", [authJwt.verifyToken], controller.singletask);
+  app.post("/api/task/add", [authJwt.verifyToken], controller.addtask);
+  app.put("/api/task/update/:id", [authJwt.verifyToken], controller.updatetask);
+  app.delete("/api/task/delete/:id", [authJwt.verifyToken], controller.deletetask);
 
 };
